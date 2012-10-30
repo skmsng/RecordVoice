@@ -42,6 +42,9 @@ public class RecordVoice extends Activity {
 		    	vibrate();
 			}
         });
+        //起動時に音声+バイブ
+        voice();
+        vibrate();
     }
     // Startボタン（録音開始）
     public void onClickStartButton(View view) {
