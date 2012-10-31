@@ -11,20 +11,20 @@ public class Lock extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lock);
+        this.setContentView(R.layout.lock);
 	}
 
-	//ロック解除ボタンでRecordVoiceクラスへ移動
+	//ロック解除ボタンでCallクラスへ移動
 	public void kaijo(View v){
-		Intent intent = new Intent(this, RecordVoice.class);
-		startActivity(intent);
+		Intent intent = new Intent(this, Call.class);
+		this.startActivity(intent);
 		//this.finish();	//このアクティビティを消滅する
 	}
 	
-	//録音再生テストボタンでCallクラスへ移動
+	//録音再生テストボタンでRecordVoiceクラスへ移動
 	public void test(View v){
-		Intent intent = new Intent(this, Call.class);
-		startActivity(intent);
+		Intent intent = new Intent(this, RecordVoice.class);
+		this.startActivity(intent);
 		//this.finish();	//このアクティビティを消滅する
 	}
 }

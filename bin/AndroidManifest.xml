@@ -23,6 +23,7 @@
         <activity android:name=".Call"></activity>
         <activity android:name=".InCall"></activity>
         <activity android:name=".Joke"></activity>
+        <activity android:name=".Sorry"></activity>
         <activity android:name=".RecordVoice"></activity>
 
     </application>

@@ -18,7 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class RecordVoice extends Activity {
+public class CopyOfRecordVoice extends Activity {
     private MediaRecorder mRecorder;
 
     private TextView txtView;
@@ -42,6 +42,9 @@ public class RecordVoice extends Activity {
 		    	vibrate();
 			}
         });
+        //起動時に音声+バイブ
+        voice();
+        vibrate();
     }
     // Startボタン（録音開始）
     public void onClickStartButton(View view) {

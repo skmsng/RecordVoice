@@ -36,6 +36,7 @@ public class VoicePlayer implements OnCompletionListener {
         }
     }
 
+	//再生終了イベント
 	public void onCompletion(MediaPlayer paraPlayer) {
 		// 再生を停止して
         mPlayer.stop();
