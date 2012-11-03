@@ -10,6 +10,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.media.MediaScannerConnection;
+import android.media.MediaScannerConnection.OnScanCompletedListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -25,6 +28,7 @@ public class InCall extends Activity {
 	MediaPlayer mp;
 	MediaRecorder mr;
 	boolean isRecording = false;	//録音中かどうか
+	String path;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,11 +56,11 @@ public class InCall extends Activity {
         File appDir = new File(dir, "RecordVoice");
         // ディレクトリを作る
         if (!appDir.exists()) appDir.mkdir();
-        // ファイル名
-        //String name = dirName + System.currentTimeMillis() + ".3gp";
-        String name = "testVoice" + ".3gp";
+        // ファイル名（現在時刻.3gp)
+//		String name = System.currentTimeMillis() + ".3gp";
+        String name = "testVoice.3gp";
         // 出力ファイルのパス
-        String path = new File(appDir, name).getAbsolutePath();
+        path = new File(appDir, name).getAbsolutePath();
 
         // インスタンスの取得
         mr = new MediaRecorder();
@@ -142,10 +146,26 @@ public class InCall extends Activity {
 	public void next(){
 		mp.stop();	//再生停止
 		recStop();	//録音停止
+		scan();		//ギャラリー登録
+		
 		Intent intent = new Intent(this, Joke.class);
 		this.startActivity(intent);
-		//this.finish();	//このアクティビティを消滅する
+		this.finish();	//このアクティビティを消滅する
 	}
+	
+	public void scan(){
+		//ギャラリーに登録（APIレベル8）
+		//第1引数:context,第2引数:path配列,第3引数:MimeType配列,第4引数:OnScanCompletedリスナー
+		String[] paths = {path};
+		MediaScannerConnection.scanFile(this, paths, null, sc);
+	}
+	//ギャラリーに登録したあと呼ばれる
+    OnScanCompletedListener sc = new OnScanCompletedListener() {
+		@Override
+		public void onScanCompleted(String path, Uri uri) {
+			
+		}
+	};
 	
 	//終了ボタンを押したとき
 	public void onClick(View v){
