@@ -15,6 +15,7 @@ import android.media.MediaScannerConnection.OnScanCompletedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -169,5 +170,17 @@ public class InCall extends Activity {
 	
 	//終了ボタンを押したとき
 	public void onClick(View v){
+	}
+	
+	//戻るボタン無効
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    // TODO Auto-generated method stub
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	            return false;
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
 	}
 }

@@ -16,6 +16,7 @@ import android.media.MediaScannerConnection.OnScanCompletedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -179,5 +180,17 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
         // カメラをリリース
         camera.release();
         camera=null;
+	}
+	
+	//戻るボタン無効
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    // TODO Auto-generated method stub
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	            return false;
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
 	}
 }
