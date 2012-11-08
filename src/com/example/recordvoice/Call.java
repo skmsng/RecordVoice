@@ -187,7 +187,8 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	public boolean dispatchKeyEvent(KeyEvent event) {
 	    // TODO Auto-generated method stub
 	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
-	        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	    	//if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	    	if(event.getKeyCode() == KeyEvent.KEYCODE_HOME) {
 	            return false;
 	        }
 	    }

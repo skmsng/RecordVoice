@@ -28,5 +28,14 @@
 	        android:layout_height="wrap_content"
 	        android:onClick="test"
 	        android:text="録音再生テスト" />
+
+	    <Button
+	        android:id="@+id/button3"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#ffffff"
+	        android:textColor="#ffffff"
+	        android:onClick="setting" />
+
 	</LinearLayout>
 </LinearLayout>
