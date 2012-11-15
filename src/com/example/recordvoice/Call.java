@@ -59,7 +59,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	//コール音の再生
 	public void call() {
 		// リソースID指定
-		mp = MediaPlayer.create(this,R.raw.call);
+		mp = MediaPlayer.create(this,R.raw.call_sound);
 		mp.setLooping(true);//ループ再生
 		mp.seekTo(0);		//再生位置0ミリ秒
 		mp.start();			//再生開始
@@ -187,11 +187,16 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	public boolean dispatchKeyEvent(KeyEvent event) {
 	    // TODO Auto-generated method stub
 	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
-	    	//if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-	    	if(event.getKeyCode() == KeyEvent.KEYCODE_HOME) {
+	    	if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 	            return false;
 	        }
 	    }
 	    return super.dispatchKeyEvent(event);
+	}
+	
+	//隠しボタン（設定画面）
+	public void setting(View v){
+		Intent intent = new Intent("android.settings.SETTINGS");
+		startActivity(intent);
 	}
 }

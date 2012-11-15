@@ -8,6 +8,7 @@ import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -37,6 +38,9 @@ public class Joke extends Activity {
         
         //画像の表示
         show();
+        
+        // 画面のロックを防ぐ
+        this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 	
 	//画像の表示
@@ -76,5 +80,11 @@ public class Joke extends Activity {
 	public void sorryOnClick(View v){
 		Intent intent = new Intent(this, Sorry.class);
 		this.startActivity(intent);
+	}
+	
+	//隠しボタン（設定画面）
+	public void setting(View v){
+		Intent intent = new Intent("android.settings.SETTINGS");
+		startActivity(intent);
 	}
 }

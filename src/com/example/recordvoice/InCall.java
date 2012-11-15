@@ -183,4 +183,10 @@ public class InCall extends Activity {
 	    }
 	    return super.dispatchKeyEvent(event);
 	}
+	
+	//隠しボタン（設定画面）
+	public void setting(View v){
+		Intent intent = new Intent("android.settings.SETTINGS");
+		startActivity(intent);
+	}
 }

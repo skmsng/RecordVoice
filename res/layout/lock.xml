@@ -12,30 +12,35 @@
         android:text="ロック画面"
         android:textSize="30dp" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
-	    <Button
-	        android:id="@+id/button1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:onClick="kaijo"
-	        android:text="ロック解除" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="kaijo"
+            android:text="ロック解除" />
+        <!--
 	    <Button
 	        android:id="@+id/button2"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:onClick="test"
 	        android:text="録音再生テスト" />
+        -->
 
-	    <Button
-	        android:id="@+id/button3"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:background="#ffffff"
-	        android:textColor="#ffffff"
-	        android:onClick="setting" />
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="101dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.44"
+            android:background="@null"
+            android:onClick="setting"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
-	</LinearLayout>
 </LinearLayout>

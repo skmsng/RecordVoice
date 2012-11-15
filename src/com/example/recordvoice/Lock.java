@@ -27,16 +27,17 @@ public class Lock extends Activity{
 	//ロック解除ボタンでCallクラスへ移動
 	public void kaijo(View v){
 		Intent intent = new Intent(this, Call.class);
+		//Intent intent = new Intent(this, Sorry.class);
 		this.startActivity(intent);
 		//this.finish();	//このアクティビティを消滅する
 	}
 	
-	//録音再生テストボタンでRecordVoiceクラスへ移動
-	public void test(View v){
-		Intent intent = new Intent(this, RecordVoice.class);
-		this.startActivity(intent);
-		//this.finish();	//このアクティビティを消滅する
-	}
+//	//録音再生テストボタンでRecordVoiceクラスへ移動
+//	public void test(View v){
+//		Intent intent = new Intent(this, RecordVoice.class);
+//		this.startActivity(intent);
+//		//this.finish();	//このアクティビティを消滅する
+//	}
 	
 	
 	//隠しボタン（設定画面）
@@ -45,22 +46,22 @@ public class Lock extends Activity{
 		startActivity(intent);
 	}
 	
-	//メニューから設定画面へ（もしものために実装）
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		this.getMenuInflater().inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()){
-		case R.id.item1:
-			Intent intent = new Intent("android.settings.SETTINGS");
-			startActivity(intent);
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+//	//メニューから設定画面へ（もしものために実装）
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		this.getMenuInflater().inflate(R.menu.menu, menu);
+//		return super.onCreateOptionsMenu(menu);
+//	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch(item.getItemId()){
+//		case R.id.item1:
+//			Intent intent = new Intent("android.settings.SETTINGS");
+//			startActivity(intent);
+//			break;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
 	
 	//アプリを終了させる
 	//異常終了
