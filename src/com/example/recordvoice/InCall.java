@@ -24,7 +24,7 @@ public class InCall extends Activity {
 	
 	Timer timer;
 	int counter;
-	int limit = 10;	//次の画面へ移動するまでの秒
+	int limit = 15;	//次の画面へ移動するまでの秒
 	TextView tv2;
 	MediaPlayer mp;
 	MediaRecorder mr;
@@ -105,7 +105,8 @@ public class InCall extends Activity {
 	//応答の再生
 	public void play() {
 		// リソースID指定
-		mp = MediaPlayer.create(this,R.raw.output);
+		//mp = MediaPlayer.create(this,R.raw.output);
+		mp = MediaPlayer.create(this,R.raw.police00);
 		//mp.setLooping(true);//ループ再生
 		mp.seekTo(0);		//再生位置0ミリ秒
 		mp.start();			//再生開始
@@ -170,6 +171,14 @@ public class InCall extends Activity {
 	
 	//終了ボタンを押したとき
 	public void onClick(View v){
+	}
+	
+	//アクティビティ終了時
+	@Override
+	protected void onStop() {
+		super.onStop();
+        //タイマーのキャンセル
+        this.timer.cancel();
 	}
 	
 	//戻るボタン無効

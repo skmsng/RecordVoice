@@ -11,9 +11,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+
 
 //ごめんなさい
 public class Sorry extends Activity implements SensorEventListener{
@@ -26,6 +28,7 @@ public class Sorry extends Activity implements SensorEventListener{
 	private int countUpSpeed = 1000;
 	long now;
 	long shakeTime;
+	TextView tv;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,13 +40,15 @@ public class Sorry extends Activity implements SensorEventListener{
         
         // 画面のロックを防ぐ
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        //カウントアップスタート
-        startTimer();
+        
+        tv = (TextView)findViewById(R.id.count);
 	}
 	
 	//アクティビティが動き始めたらリスナーを登録する
     public void onResume() {
     	super.onResume();
+    	//カウントアップスタート
+        startTimer();
     	//加速度センサーリストを取得
     	List<Sensor> sensorList = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
     	if (sensorList != null && !sensorList.isEmpty()) {
@@ -55,6 +60,8 @@ public class Sorry extends Activity implements SensorEventListener{
     @Override
 	protected void onStop() {
 		super.onStop();
+		//タイマーのキャンセル
+		this.timer.cancel();
 		//加速度センサーリスナー解除
 		sensorManager.unregisterListener(this);
 	}
@@ -71,27 +78,29 @@ public class Sorry extends Activity implements SensorEventListener{
 		x = event.values[0];	//x軸
 		//y = event.values[1];	//y軸
 		//z = event.values[2];	//z軸
-		now = System.currentTimeMillis();
-		if(now - shakeTime > 200){
+		
+		//次のシェイクまで0.1秒あける
+		//now = System.currentTimeMillis();
+		//if(now - shakeTime > 100){
 			countup();
-		}
+		//}
 
 //		((TextView)findViewById(R.id.x)).setText("x:"+x);
 //		((TextView)findViewById(R.id.y)).setText("y:"+y);
 //		((TextView)findViewById(R.id.z)).setText("z:"+z);
 
 		
-		((TextView)findViewById(R.id.count)).setText("count:"+count);
+		tv.setText(String.valueOf(count));
 	}
 	public void countup(){
 		//左右方向の加速度の前回との差が5を超える場合にカウントアップ（数値は適当）
-		if(Math.abs(x - xx)>10 && count>1) count--;
+		if(Math.abs(x - xx)>30 && count>3) count--;
 		//else if(Math.abs(y - yy)>10) count++;
 		//else if(Math.abs(z - zz)>10) count++;
 		xx = x;
 		//yy = y;
 		//zz = z;
-		shakeTime = System.currentTimeMillis();
+		//shakeTime = System.currentTimeMillis();
 	}
 	
 	Timer timer;
@@ -128,12 +137,22 @@ public class Sorry extends Activity implements SensorEventListener{
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		this.timer.cancel();	//タイマーのキャンセル
 //		if(this.wl.isHeld()){
 //			this.wl.release();	//ロック画面にしない設定を解除
 //		}
 	}
 	
+	//戻るボタン無効
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    // TODO Auto-generated method stub
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	    	if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	            return false;
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
+	}
 
 	//隠しボタン（設定画面）
 	public void setting(View v){

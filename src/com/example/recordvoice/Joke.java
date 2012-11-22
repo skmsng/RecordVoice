@@ -24,14 +24,14 @@ public class Joke extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.joke);
         
-        //もう一度再生ボタン
-        btn = (Button)this.findViewById(R.id.button2);
-        btn.setOnClickListener(new Button.OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				voice();
-			}
-        });
+//        //もう一度再生ボタン
+//        btn = (Button)this.findViewById(R.id.button2);
+//        btn.setOnClickListener(new Button.OnClickListener(){
+//			@Override
+//			public void onClick(View v) {
+//				voice();
+//			}
+//        });
         
         //録音音声の再生
         voice();

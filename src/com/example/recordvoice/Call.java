@@ -30,6 +30,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	int limit = 5;	//次の画面へ移動するまでの秒
 	TextView tv2;
 	MediaPlayer mp;
+	boolean onPicture;	//写真を撮ったかどうか
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,13 +48,14 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
         button = (Button)this.findViewById(R.id.button1);
         button.setOnClickListener(this);
         //カメラをオープン
- 		camera = Camera.open(0);
+ 		camera = Camera.open();
+// 		camera = Camera.open(0);	//Android2.3以降のみ
  		//プレビュー開始
  		camera.startPreview();
  		
- 		// 利用可能なカメラの個数を取得
- 	    int numberOfCameras = Camera.getNumberOfCameras();
- 	    System.out.println(numberOfCameras);
+// 		// 利用可能なカメラの個数を取得
+// 	    int numberOfCameras = Camera.getNumberOfCameras();
+// 	    System.out.println(numberOfCameras);
 	}
 	
 	//コール音の再生
@@ -98,6 +100,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	
 	//5秒経過でInCallアクティビティへ
 	public void next(){
+		if(!onPicture) camera.takePicture(null,null,null,this);
 		mp.stop();	//再生停止
 		Intent intent = new Intent(this, InCall.class);
 		this.startActivity(intent);
@@ -113,6 +116,12 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	public void onClick(View v){
 		//写真を撮った後、自動的にonPictureTaken()を呼び出す
         camera.takePicture(null,null,null,this);
+        
+        onPicture = true;
+        
+        //button.setEnabled(false);//グレー無効状態
+        button.setClickable(false);//クリックできない状態
+        //button.setSelected(false);//選択できない状態
     }
 	
 	@Override
@@ -145,7 +154,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 			e.printStackTrace();
 		}
 		//プレビュー再開
-		camera.startPreview();
+		//camera.startPreview();
 	}
 	
 	//写真データをファイルに書き込み
@@ -180,6 +189,9 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
         // カメラをリリース
         camera.release();
         camera=null;
+        
+        //タイマーのキャンセル
+        this.timer.cancel();
 	}
 	
 	//戻るボタン無効
