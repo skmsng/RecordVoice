@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_weight="0.39"
         android:background="@drawable/toumei_btn2"
-        android:text="透明ボタン" />
+        android:text="" />
 
     <DigitalClock
         android:id="@+id/digitalClock1"
@@ -25,11 +25,10 @@
         android:text="DigitalClock"
         android:textSize="68sp" />
 
-    
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1.00"
+        android:layout_weight="2.45"
         android:orientation="vertical" >
 		
 		<ImageView 
@@ -42,18 +41,7 @@
     </FrameLayout>
     
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="録音再生テスト" />
-
-    </LinearLayout>
 
 </LinearLayout>
 

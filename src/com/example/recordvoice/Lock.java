@@ -2,6 +2,8 @@ package com.example.recordvoice;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,6 +19,8 @@ public class Lock extends Activity{
 	
 	Button button;
 	ImageView dragView;
+	Resources resources;
+	private Drawable drawable;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class Lock extends Activity{
         
         // 画面のロックを防ぐ
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
         //リスナー登録
         dragView = (ImageView)findViewById(R.id.imageView1);
         LockViewListener listener = new LockViewListener(dragView, this);

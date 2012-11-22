@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:layout_weight="0.04"
             android:background="@drawable/toumei_btn2"
-            android:text="透明ボタン" />
+            android:text="" />
 
         <TextView
             android:id="@+id/textView3"
@@ -65,7 +65,7 @@
 	        android:background="@drawable/endbtn"
 	        android:onClick="onClick"
 	        android:paddingLeft="10sp"
-	        android:text="終了（写真を撮る）" />
+	        android:text="" />
 
 	</LinearLayout>
 </LinearLayout>

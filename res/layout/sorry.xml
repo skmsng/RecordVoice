@@ -12,7 +12,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/toumei_btn2"
-        android:text="透明ボタン" />
+        android:text="" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,20 +24,20 @@
             android:layout_height="100dp"
             android:layout_gravity="bottom"
             android:orientation="vertical" >
-
+            
             <TextView
                 android:id="@+id/count"
                 android:layout_width="150dp"
-                android:layout_height="40dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="0sp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="13sp"
-                android:layout_marginTop="23sp"
-                android:ems="10"
-                android:inputType="numberDecimal" >
+                android:inputType="numberDecimal"
+                android:textSize="60dp"
+                android:textColor="#000000" >
 
                 <requestFocus />
             </TextView>
-
         </LinearLayout>
 
     </LinearLayout>
@@ -57,4 +57,6 @@
 
                 <requestFocus />
             </EditText>
+            
+
  -->

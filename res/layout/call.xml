@@ -18,14 +18,7 @@
             android:layout_width="64dp"
             android:layout_height="48dp"
             android:background="@drawable/toumei_btn2"
-            android:text="透明ボタン" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="30dp" />
+            android:text="" />
 
     </LinearLayout>
 
@@ -44,7 +37,7 @@
             android:layout_marginLeft="0.9sp"
             android:background="@drawable/endbtn"
             android:paddingLeft="15sp"
-            android:text="終了（写真を撮る）" />
+            android:text="" />
 
 	</LinearLayout>
 </LinearLayout>

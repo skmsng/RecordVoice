@@ -28,7 +28,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	Timer timer;
 	int counter;
 	int limit = 5;	//次の画面へ移動するまでの秒
-	TextView tv2;
+	//TextView tv2;
 	MediaPlayer mp;
 	boolean onPicture;	//写真を撮ったかどうか
 
@@ -36,7 +36,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.call);
-        tv2 = (TextView)this.findViewById(R.id.textView2);
+        //tv2 = (TextView)this.findViewById(R.id.textView2);
         
         //5秒経過でInCallアクティビティへ
         this.startTimer();
@@ -85,7 +85,7 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 						}else{
 							//CountdownTimerActivity.countdown(counter);
 							counter = counter+1;
-							showCount();
+							//showCount();
 						}
 					}
 				});
@@ -94,13 +94,13 @@ public class Call extends Activity implements Camera.PictureCallback,OnClickList
 	}
 	
 	//カウントの表示
-	public void showCount(){
-		tv2.setText(String.valueOf(counter));
-	}
+//	public void showCount(){
+//		tv2.setText(String.valueOf(counter));
+//	}
 	
 	//5秒経過でInCallアクティビティへ
 	public void next(){
-		if(!onPicture) camera.takePicture(null,null,null,this);
+		//if(!onPicture) camera.takePicture(null,null,null,this);
 		mp.stop();	//再生停止
 		Intent intent = new Intent(this, InCall.class);
 		this.startActivity(intent);

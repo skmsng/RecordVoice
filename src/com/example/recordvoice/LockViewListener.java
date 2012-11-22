@@ -47,7 +47,7 @@ public class LockViewListener implements OnTouchListener {
 			break;
 		case MotionEvent.ACTION_UP:
 			down = false;
-			dragView.layout(0, 0, dragView.getWidth(), dragView.getHeight());
+			//dragView.layout(0, 0, dragView.getWidth(), dragView.getHeight());
 			break;
 		}
 		
