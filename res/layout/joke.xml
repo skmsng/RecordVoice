@@ -39,7 +39,8 @@
         android:text="" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/previous"
+        android:onClick="previous"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +59,8 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/next"
+        android:onClick="next"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

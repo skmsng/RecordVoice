@@ -3,12 +3,10 @@ package com.example.recordvoice;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,8 +17,8 @@ public class Lock extends Activity{
 	
 	Button button;
 	ImageView dragView;
+	View image;
 	Resources resources;
-	private Drawable drawable;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,28 +28,19 @@ public class Lock extends Activity{
         // 画面のロックを防ぐ
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
-        //リスナー登録
-        dragView = (ImageView)findViewById(R.id.imageView1);
-        LockViewListener listener = new LockViewListener(dragView, this);
-        dragView.setOnTouchListener(listener);
 	}
 
-	//ロック解除ボタンでCallクラスへ移動
-	public void kaijo(){
-		Intent intent = new Intent(this, Call.class);
-		//Intent intent = new Intent(this, Sorry.class);
-		this.startActivity(intent);
-		//this.finish();	//このアクティビティを消滅する
-	}
-	
-	
-	
-//	//録音再生テストボタンでRecordVoiceクラスへ移動
-//	public void test(View v){
-//		Intent intent = new Intent(this, RecordVoice.class);
+//	//ロック解除ボタンでCallクラスへ移動
+//	public void kaijo(View v){
+//		Intent intent = new Intent(this, Call.class);
+//		//Intent intent = new Intent(this, Sorry.class);
 //		this.startActivity(intent);
 //		//this.finish();	//このアクティビティを消滅する
 //	}
+	
+	//test用
+	public void test(View v){
+	}
 
 	//メニューから設定画面へ（もしものために実装）
 	@Override
@@ -82,11 +71,19 @@ public class Lock extends Activity{
 	    return super.dispatchKeyEvent(event);
 	}
 	
+	private boolean finish;
 	//隠しボタン（設定画面）
 	public void setting(View v){
-		Intent intent = new Intent("android.settings.SETTINGS");
-		startActivity(intent);
+		if(finish){
+			this.finish();	//このアクティビティを消滅する
+			//Intent intent = new Intent("android.settings.SETTINGS");
+			//startActivity(intent);
+		}else{
+			finish = true;
+		}
 	}
+
+	
 	
 	//アプリを終了させる
 	//異常終了

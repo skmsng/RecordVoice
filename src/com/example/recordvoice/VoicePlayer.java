@@ -12,13 +12,16 @@ public class VoicePlayer implements OnCompletionListener {
 	private String mFilePath;	//ファイルパス
 
 	public VoicePlayer() {
+		this(0);
+	}
+	public VoicePlayer(int startNum) {
 		// インスタンスの取得
         mPlayer = new MediaPlayer();
         // Listenerの登録必要です
         mPlayer.setOnCompletionListener(this);
 		// SDカードのディレクトリ
 		mFilePath = Environment.getExternalStorageDirectory().toString()
-    				+ "/RecordVoice/testVoice.3gp";
+    				+ "/RecordVoice/joke"+ startNum +".3gp";
 	}
 	
 	//音声ファイル再生
@@ -40,11 +43,17 @@ public class VoicePlayer implements OnCompletionListener {
 	public void onCompletion(MediaPlayer paraPlayer) {
 		// 再生を停止して
         mPlayer.stop();
-        //mPlayer.reset();
-        //mPlayer.setOnCompletionListener(null);
         // メモリの解放
-        mPlayer.release();
-        //mPlayer=null;
+        //mPlayer.release();
         Log.v("VoicePlayer", "onCompletion is Called");
 	}
+	
+	//再生途中終了
+	public void stop(){
+		if(mPlayer.isPlaying()){
+			mPlayer.stop();
+		}
+		mPlayer.release();
+	}
+
 }

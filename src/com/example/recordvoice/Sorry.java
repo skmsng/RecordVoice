@@ -154,10 +154,16 @@ public class Sorry extends Activity implements SensorEventListener{
 	    return super.dispatchKeyEvent(event);
 	}
 
+	private boolean finish;
 	//隠しボタン（設定画面）
 	public void setting(View v){
-		Intent intent = new Intent("android.settings.SETTINGS");
-		startActivity(intent);
+		if(finish){
+			this.finish();	//このアクティビティを消滅する
+			//Intent intent = new Intent("android.settings.SETTINGS");
+			//startActivity(intent);
+		}else{
+			finish = true;
+		}
 	}
 
 }

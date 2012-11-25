@@ -57,7 +57,7 @@ public class RecordVoice extends Activity {
         if (!appDir.exists()) appDir.mkdir();
         // ファイル名
         //String name = dirName + System.currentTimeMillis() + ".3gp";
-        String name = "testVoice" + ".3gp";
+        String name = "joke" + 0 + ".3gp";
         // 出力ファイルのパス
         String path = new File(appDir, name).getAbsolutePath();
 

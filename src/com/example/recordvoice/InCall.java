@@ -8,6 +8,8 @@ import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
@@ -24,12 +26,14 @@ public class InCall extends Activity {
 	
 	Timer timer;
 	int counter;
-	int limit = 15;	//次の画面へ移動するまでの秒
-	TextView tv2;
+	int limit = 5;	//次の画面へ移動するまでの秒
+	TextView tv2;	//通話時間
 	MediaPlayer mp;
 	MediaRecorder mr;
 	boolean isRecording = false;	//録音中かどうか
 	String path;
+	int startNum;	//毎回の最初の画像ナンバー
+	int number;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,18 @@ public class InCall extends Activity {
         this.setContentView(R.layout.incall);
         tv2 = (TextView)this.findViewById(R.id.textView2);
         
+        //Callクラスから画像ナンバーの取得
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+        	this.number = extras.getInt("number");
+        	this.startNum = extras.getInt("startNum");
+        }
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
         //10秒経過でJokeアクティビティへ
         this.startTimer();
         
@@ -59,7 +75,7 @@ public class InCall extends Activity {
         if (!appDir.exists()) appDir.mkdir();
         // ファイル名（現在時刻.3gp)
 //		String name = System.currentTimeMillis() + ".3gp";
-        String name = "testVoice.3gp";
+        String name = "joke"+ startNum +".3gp";
         // 出力ファイルのパス
         path = new File(appDir, name).getAbsolutePath();
 
@@ -112,7 +128,7 @@ public class InCall extends Activity {
 		mp.start();			//再生開始
     }
 	
-	//10秒タイマー
+	//15秒タイマー
 	public void startTimer(){
 		if(timer != null) timer.cancel();
 		timer = new Timer();
@@ -150,9 +166,11 @@ public class InCall extends Activity {
 		recStop();	//録音停止
 		scan();		//ギャラリー登録
 		
-		Intent intent = new Intent(this, Joke.class);
-		this.startActivity(intent);
 		this.finish();	//このアクティビティを消滅する
+		Intent intent = new Intent(this, Joke.class);
+		intent.putExtra("number", this.number);
+		intent.putExtra("startNum", this.startNum);
+		this.startActivity(intent);
 	}
 	
 	public void scan(){
@@ -179,6 +197,14 @@ public class InCall extends Activity {
 		super.onStop();
         //タイマーのキャンセル
         this.timer.cancel();
+        
+        mp.stop();	//再生停止
+        recStop();	//録音停止
+        
+//        //画像ナンバー保存（通話中でも写真が取れる場合）
+//        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+//        Editor editor = pref.edit();
+//        editor.putInt("number", this.number);
 	}
 	
 	//戻るボタン無効
@@ -193,9 +219,15 @@ public class InCall extends Activity {
 	    return super.dispatchKeyEvent(event);
 	}
 	
+	private boolean finish;
 	//隠しボタン（設定画面）
 	public void setting(View v){
-		Intent intent = new Intent("android.settings.SETTINGS");
-		startActivity(intent);
+		if(finish){
+			this.finish();	//このアクティビティを消滅する
+			//Intent intent = new Intent("android.settings.SETTINGS");
+			//startActivity(intent);
+		}else{
+			finish = true;
+		}
 	}
 }

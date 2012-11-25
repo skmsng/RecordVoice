@@ -15,6 +15,7 @@
     <application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:name=".Lock"
         		  android:screenOrientation="portrait"
+        		  android:configChanges="keyboardHidden|orientation"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +25,26 @@
             </intent-filter>
         </activity>
         <!-- 使用するアクティビティ -->
-        <activity android:name=".Call"></activity>
-        <activity android:name=".InCall"></activity>
-        <activity android:name=".Joke"></activity>
-        <activity android:name=".Sorry"></activity>
-        <activity android:name=".RecordVoice"></activity>
+        <activity android:name=".Call"
+				  android:screenOrientation="portrait"
+        		  android:configChanges="keyboardHidden|orientation">
+        </activity>
+        <activity android:name=".InCall"
+            	  android:screenOrientation="portrait"
+        		  android:configChanges="keyboardHidden|orientation">
+        </activity>
+        <activity android:name=".Joke"
+            	  android:screenOrientation="portrait"
+        		  android:configChanges="keyboardHidden|orientation">
+        </activity>
+        <activity android:name=".Sorry"
+            	  android:screenOrientation="portrait"
+        		  android:configChanges="keyboardHidden|orientation">
+        </activity>
+        <activity android:name=".RecordVoice"
+            	  android:screenOrientation="portrait"
+        		  android:configChanges="keyboardHidden|orientation">
+        </activity>
 
     </application>
 </manifest>
