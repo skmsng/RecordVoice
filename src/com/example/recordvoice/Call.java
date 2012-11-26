@@ -34,7 +34,7 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
 	
 	Timer timer;
 	int counter;
-	int limit = 5;	//次の画面へ移動するまでの秒
+	int limit = 10;	//次の画面へ移動するまでの秒
 	//TextView tv2;
 	MediaPlayer mp;
 	//boolean onPicture;	//写真を撮ったかどうか
@@ -253,6 +253,8 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
 	@Override
 	protected void onStop() {
 		super.onStop();
+		// プレビューコールバックを解除
+		camera.setPreviewCallback(null);
 		// プレビューを停止
         camera.stopPreview();
         // カメラをリリース
@@ -301,7 +303,7 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
     public void takePreviewRawData() {
         if (!mProgressFlag) {
             mProgressFlag = true;
-            camera.setPreviewCallback(this);	//プレビューコールバックをセット   
+            camera.setPreviewCallback(this);	//プレビューコールバックをセット
         }
     }
     

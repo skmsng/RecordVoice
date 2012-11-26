@@ -10,7 +10,7 @@
         android:layout_height="326dp"
         android:layout_gravity="center"
         android:layout_marginBottom="59sp"
-        android:src="@drawable/icon" />
+        android:src="@drawable/joke3" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

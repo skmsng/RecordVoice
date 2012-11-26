@@ -45,7 +45,8 @@ public class Joke extends Activity {
         //撮影枚数分のbmp配列を作成
 		bmp = new Bitmap[number-startNum];
 		//パスの取得
-		path = Environment.getExternalStorageDirectory()+ "/RecordVoice/joke"+ this.startNum +".jpg";
+		//path = Environment.getExternalStorageDirectory()+ "/RecordVoice/joke"+ this.startNum +".jpg";
+		path = Environment.getExternalStorageDirectory()+ "/RecordVoice/joke.jpg";
 		
 		iv = (ImageView)findViewById(R.id.imageView1);
 		previousBTN = (Button)this.findViewById(R.id.previous);

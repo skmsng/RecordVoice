@@ -26,7 +26,7 @@ public class InCall extends Activity {
 	
 	Timer timer;
 	int counter;
-	int limit = 5;	//次の画面へ移動するまでの秒
+	int limit = 15;	//次の画面へ移動するまでの秒
 	TextView tv2;	//通話時間
 	MediaPlayer mp;
 	MediaRecorder mr;

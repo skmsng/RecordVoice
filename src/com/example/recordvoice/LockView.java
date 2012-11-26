@@ -71,7 +71,7 @@ public class LockView extends View {
 
     
 	
-	int left = -400;
+	int left = -500;
 	int x, oldx;
 	boolean down;
 	
