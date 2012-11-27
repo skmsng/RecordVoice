@@ -61,7 +61,7 @@
 	        android:layout_width="104dp"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="center|top"
-	        android:layout_marginTop="60dp"
+	        android:layout_marginTop="0dp"
 	        android:layout_marginLeft="0.5sp"
 	        android:background="@drawable/endbtn"
 	        android:onClick="onClick"
