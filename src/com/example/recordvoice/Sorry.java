@@ -58,8 +58,10 @@ public class Sorry extends Activity implements SensorEventListener{
     	}
     }
     @Override
-	protected void onStop() {
-		super.onStop();
+//	protected void onStop() {
+//		super.onStop();
+	protected void onPause(){
+		super.onPause();
 		//タイマーのキャンセル
 		this.timer.cancel();
 		//加速度センサーリスナー解除

@@ -253,6 +253,8 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
 	@Override
 	protected void onStop() {
 		super.onStop();
+//	protected void onPause(){
+//		super.onPause();
 		// プレビューコールバックを解除
 		camera.setPreviewCallback(null);
 		// プレビューを停止
@@ -269,6 +271,7 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
         Editor editor = pref.edit();
         editor.putInt("number", this.number);
         editor.commit();
+        this.finish();	//このアクティビティを消滅する
 	}
 	
 	//戻るボタン無効
@@ -278,6 +281,8 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
 	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
 	    	if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
 	            return false;
+	        }else if(event.getKeyCode() == KeyEvent.KEYCODE_POWER){
+	        	return false;
 	        }
 	    }
 	    return super.dispatchKeyEvent(event);

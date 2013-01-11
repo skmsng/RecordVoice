@@ -193,8 +193,10 @@ public class InCall extends Activity {
 	
 	//アクティビティ終了時
 	@Override
-	protected void onStop() {
-		super.onStop();
+//	protected void onStop() {
+//		super.onStop();
+	protected void onPause(){
+		super.onPause();
         //タイマーのキャンセル
         this.timer.cancel();
         
