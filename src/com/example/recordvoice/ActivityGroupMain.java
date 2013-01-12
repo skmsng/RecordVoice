@@ -5,6 +5,7 @@ import android.app.LocalActivityManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,21 +69,21 @@ public class ActivityGroupMain extends ActivityGroup {
     }
     
 	//メニューから設定画面へ（もしものために実装）
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		this.getMenuInflater().inflate(R.menu.menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()){
-		case R.id.item1:
-			Intent intent = new Intent("android.settings.SETTINGS");
-			startActivity(intent);
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		this.getMenuInflater().inflate(R.menu.menu, menu);
+//		return super.onCreateOptionsMenu(menu);
+//	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch(item.getItemId()){
+//		case R.id.item1:
+//			Intent intent = new Intent("android.settings.SETTINGS");
+//			startActivity(intent);
+//			break;
+//		}
+//		return super.onOptionsItemSelected(item);
+//	}
 	
 	private boolean finish;
 	//隠しボタン（設定画面）
@@ -94,6 +95,20 @@ public class ActivityGroupMain extends ActivityGroup {
 		}else{
 			finish = true;
 		}
+	}
+	
+	//戻るボタン無効
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+	    // TODO Auto-generated method stub
+	    if (event.getAction()==KeyEvent.ACTION_DOWN) {
+	    	if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+	            return false;
+	        }else if(event.getKeyCode() == KeyEvent.KEYCODE_POWER){
+	        	return false;
+	        }
+	    }
+	    return super.dispatchKeyEvent(event);
 	}
 	
 	
