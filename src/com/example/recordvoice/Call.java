@@ -48,11 +48,11 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
 // 		// 利用可能なカメラの個数を取得
 // 	    int numberOfCameras = Camera.getNumberOfCameras();
 // 	    System.out.println(numberOfCameras);
-	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
+//	}
+//	
+//	@Override
+//	protected void onResume() {
+//		super.onResume();
 		
         //終了ボタン（写真を撮る）
         button = (Button)this.findViewById(R.id.button1);
@@ -127,11 +127,12 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
         
 		//if(!onPicture) camera.takePicture(null,null,null,this);
 		//mp.stop();	//再生停止
-        this.finish();	//このアクティビティを消滅する
+        //this.finish();	//このアクティビティを消滅する
 		Intent intent = new Intent(this, InCall.class);
 		intent.putExtra("number", this.number);
 		intent.putExtra("startNum", this.startNum);
-		this.startActivity(intent);
+		//this.startActivity(intent);
+		((ActivityGroupMain)getParent()).startInnerActivity("InCall", intent);
 	}
 	
 	
@@ -271,7 +272,7 @@ public class Call extends Activity implements OnClickListener,Camera.PreviewCall
         Editor editor = pref.edit();
         editor.putInt("number", this.number);
         editor.commit();
-        this.finish();	//このアクティビティを消滅する
+        //this.finish();	//このアクティビティを消滅する
 	}
 	
 	//戻るボタン無効

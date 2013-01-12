@@ -51,11 +51,11 @@ public class Joke extends Activity {
 		iv = (ImageView)findViewById(R.id.imageView1);
 		previousBTN = (Button)this.findViewById(R.id.previous);
 		nextBTN = (Button)this.findViewById(R.id.next);
-	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
+//	}
+//	
+//	@Override
+//	protected void onResume() {
+//		super.onResume();
 		
         //録音音声の再生
 		vplayer = new VoicePlayer(this.startNum);
@@ -127,18 +127,20 @@ public class Joke extends Activity {
 	
 	//ごめんなさいボタンでSorryアクティビティへ
 	public void sorryOnClick(View v){
-		this.finish();	//このアクティビティを消滅する
+		//this.finish();	//このアクティビティを消滅する
 		Intent intent = new Intent(this, Sorry.class);
-		this.startActivity(intent);
+//		this.startActivity(intent);
+		((ActivityGroupMain)getParent()).startInnerActivity("Joke", intent);
 	}
 	
 	//アクティビティ終了時
 	@Override
-//	protected void onStop() {
-//		super.onStop();
-	protected void onPause(){
-		super.onPause();
+	protected void onStop() {
+		super.onStop();
+//	protected void onPause(){
+//		super.onPause();
 		vplayer.stop();
+		//finish();
 	}
 	
 	//戻るボタン無効

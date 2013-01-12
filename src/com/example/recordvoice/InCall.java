@@ -47,11 +47,11 @@ public class InCall extends Activity {
         	this.number = extras.getInt("number");
         	this.startNum = extras.getInt("startNum");
         }
-	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
+//	}
+//	
+//	@Override
+//	protected void onResume() {
+//		super.onResume();
 		
         //10秒経過でJokeアクティビティへ
         this.startTimer();
@@ -166,11 +166,12 @@ public class InCall extends Activity {
 		recStop();	//録音停止
 		scan();		//ギャラリー登録
 		
-		this.finish();	//このアクティビティを消滅する
+		//this.finish();	//このアクティビティを消滅する
 		Intent intent = new Intent(this, Joke.class);
 		intent.putExtra("number", this.number);
 		intent.putExtra("startNum", this.startNum);
-		this.startActivity(intent);
+		//this.startActivity(intent);
+		((ActivityGroupMain)getParent()).startInnerActivity("Joke", intent);
 	}
 	
 	public void scan(){
@@ -193,15 +194,17 @@ public class InCall extends Activity {
 	
 	//アクティビティ終了時
 	@Override
-//	protected void onStop() {
-//		super.onStop();
-	protected void onPause(){
-		super.onPause();
+	protected void onStop() {
+		super.onStop();
+//	protected void onPause(){
+//		super.onPause();
         //タイマーのキャンセル
         this.timer.cancel();
         
         mp.stop();	//再生停止
         recStop();	//録音停止
+        
+//        this.finish();	//このアクティビティを消滅する
         
 //        //画像ナンバー保存（通話中でも写真が取れる場合）
 //        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);

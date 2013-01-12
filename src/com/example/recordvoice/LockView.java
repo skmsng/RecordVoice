@@ -93,7 +93,7 @@ public class LockView extends View {
 			}
 			if(down && x>(width*6/10)){
 				down = false;
-				kaijo();
+				lock.kaijo();
 			}
 			break;
 		case MotionEvent.ACTION_UP:
@@ -109,9 +109,9 @@ public class LockView extends View {
 	}
 	
 	//ロック解除ボタンでCallクラスへ移動
-	public void kaijo(){
-		//lock.finish();	//このアクティビティを消滅する
-		Intent intent = new Intent(lock, Call.class);
-		lock.startActivity(intent);
-	}
+//	public void kaijo(){
+//		//lock.finish();	//このアクティビティを消滅する
+//		Intent intent = new Intent(lock, Call.class);
+//		lock.startActivity(intent);
+//	}
 }

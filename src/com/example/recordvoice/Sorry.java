@@ -42,11 +42,11 @@ public class Sorry extends Activity implements SensorEventListener{
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
         tv = (TextView)findViewById(R.id.count);
-	}
-	
-	//アクティビティが動き始めたらリスナーを登録する
-    public void onResume() {
-    	super.onResume();
+//	}
+//	
+//	//アクティビティが動き始めたらリスナーを登録する
+//    public void onResume() {
+//    	super.onResume();
     	//カウントアップスタート
         startTimer();
     	//加速度センサーリストを取得
@@ -58,10 +58,10 @@ public class Sorry extends Activity implements SensorEventListener{
     	}
     }
     @Override
-//	protected void onStop() {
-//		super.onStop();
-	protected void onPause(){
-		super.onPause();
+	protected void onStop() {
+		super.onStop();
+//	protected void onPause(){
+//		super.onPause();
 		//タイマーのキャンセル
 		this.timer.cancel();
 		//加速度センサーリスナー解除
@@ -135,13 +135,10 @@ public class Sorry extends Activity implements SensorEventListener{
 		},0,countUpSpeed);
 	}
 	
-	//ストップを押してキャンセルする場合(間接的に呼ばれる？)
+	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-//		if(this.wl.isHeld()){
-//			this.wl.release();	//ロック画面にしない設定を解除
-//		}
 	}
 	
 	//戻るボタン無効

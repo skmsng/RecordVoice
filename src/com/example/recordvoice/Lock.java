@@ -3,7 +3,9 @@ package com.example.recordvoice;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.ActivityGroup;
 import android.app.AlertDialog;
+import android.app.LocalActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,6 +24,8 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +35,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 //ロック画面
-public class Lock extends Activity{
+public class Lock extends ActivityGroup{
 	
 	Button button;
 	ImageView dragView;
@@ -46,6 +50,7 @@ public class Lock extends Activity{
         // 画面のロックを防ぐ
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
+        //ダイアログ
         alertDialog();
         
 	}
@@ -82,17 +87,45 @@ public class Lock extends Activity{
 	
 	
 	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Log.d("Lock", "onRestart");
+	}
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Log.d("Lock", "onStart");
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.d("Lock", "onResume");
+	}
+	@Override
+	protected void onPause(){
+		super.onPause();
+		Log.d("Lock", "onPause");
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+		Log.d("Lock", "onStop");
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Log.d("Lock", "onDestroy");
+	}
+	@Override
+	public void onUserLeaveHint(){
+		//ホームボタンが押された時や、他のアプリが起動した時に呼ばれる
+		//戻るボタンが押された場合には呼ばれない
+		Log.d("Lock", "onUserLeaveHint");
+	}
+
 	
-	
-	
-//	@Override
-//	protected void onStop() {
-//		super.onStop();
-//	protected void onPause(){
-//		super.onPause();
-//		finish();
-//	}
-	
+
 	
 
 	//test用
@@ -140,6 +173,13 @@ public class Lock extends Activity{
 		}
 	}
 
+	//ロック解除ボタンでCallクラスへ移動
+	public void kaijo(){
+		//lock.finish();	//このアクティビティを消滅する
+		Intent intent = new Intent(this, Call.class);
+//		startActivity(intent);
+		((ActivityGroupMain)getParent()).startInnerActivity("Call", intent);
+	}
 	
 	
 	//アプリ終了のダブルクリック
